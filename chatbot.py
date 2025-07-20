@@ -1,5 +1,7 @@
 import openai
 import chromadb
+from dotenv import load_dotenv
+load_dotenv()
 
 class ChatBot:
     def __init__(self ,persist_path="./data/chroma"):
@@ -40,13 +42,8 @@ class ChatBot:
         답변:
         """
         return prompt
-    
-    def response(self, user_question):
-        self.context = self.retriever(user_question)
-        
-        response = openai.chat.completions.create(
-            model="gpt-4o-mini",
-            messages=[{"role": "user", "content": self._set_prompt(self.context, user_question)}],
-            temperature=0.7
-        )
-        return response.choices[0].message.content.strip()
+
+    # 스트리밍에 사용할 prompt 반환용 메서드 추가
+    def get_prompt(self, user_question):
+        context = self.retriever(user_question)
+        return self._set_prompt(context, user_question)

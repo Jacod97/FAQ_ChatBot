@@ -5,7 +5,7 @@ import pandas as pd
 import openai
 import chromadb
 
-load_dotenv()
+load_dotenv("../../.env")
 
 df = pd.read_csv("../faq.csv", encoding='utf-8')
 
