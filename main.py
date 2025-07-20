@@ -1,33 +1,22 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from pydantic import BaseModel
-from fastapi.responses import StreamingResponse
 from chatbot import ChatBot
 import uvicorn
-import openai
 
+# 사용자 요청을 위한 Pydantic 모델 정의
 class QueryRequest(BaseModel):
     user_question: str
 
+# FastAPI 앱 생성
 app = FastAPI()
 
-bot = ChatBot()
-
-def llm_stream(prompt):
-    response = openai.chat.completions.create(
-        model="gpt-4o-mini",
-        messages=[{"role": "user", "content": prompt}],
-        temperature=0.7,
-        stream=True
-    )
-    for chunk in response:
-        delta = chunk.choices[0].delta
-        if hasattr(delta, "content") and delta.content:
-            yield delta.content
+# ChatBot 인스턴스 생성
+bot = ChatBot(persist_path="./data/chroma")
 
 @app.post("/chat")
 async def chat(request: QueryRequest):
-    prompt = bot.get_prompt(request.user_question)
-    return StreamingResponse(llm_stream(prompt), media_type="text/plain")
+    answer = bot.response(request.user_question)
+    return {"answer": answer}
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
