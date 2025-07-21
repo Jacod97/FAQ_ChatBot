@@ -1,0 +1,10 @@
+openai
+chromadb
+streamlit
+streamlit-chat
+fastapi
+uvicorn
+dotenv
+pydantic
+tqdm
+pandas
