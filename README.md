@@ -9,21 +9,21 @@ Streamlit UI와 FastAPI 백엔드를 통해 질문을 받고, FAQ 벡터 검색 
 
 ```
 C:.
-│ .env
-│ app.py
+│ .env 
+│ app.py 
 │ chatbot.py
 │ main.py
-│ requirements.txt
+│ requirements.txt 
 │
 ├─data
-│ │ faq.csv
+│ │ faq.csv 
 │ │ final_result.pkl
 │ │
 │ ├─chroma # ChromaDB 벡터 DB 저장 경로
 │ │
 │ └─make_db
-│ │ make_csv.py # pickle → csv 변환 스크립트
-│ │ vectorDB.py # 임베딩 → ChromaDB 저장 스크립트
+│ │ make_csv.py 
+└─└─vectorDB.py
 ```
 
 
