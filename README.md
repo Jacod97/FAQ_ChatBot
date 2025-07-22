@@ -75,17 +75,18 @@ FAQ:
 ---
 
 ## 4. 주요 파일 설명
-파일명                 설명
---------------------- --------------------------------------------
-.env                  OpenAI API 키 환경 변수 파일
-requirements.txt      의존 패키지 목록
-app.py                Streamlit 기반 UI
-main.py               FastAPI 백엔드 서버
-chatbot.py            질문 임베딩 + 검색 + 응답 생성 로직
-data/final_result.pkl 원본 FAQ 데이터
-data/faq.csv          전처리된 FAQ 텍스트 데이터
-make_csv.py           pickle → CSV 변환 스크립트
-vectorDB.py           FAQ 임베
+
+| 파일명                | 설명                                      |
+|----------------------|-------------------------------------------|
+| `.env`               | OpenAI API 키 환경 변수 파일              |
+| `requirements.txt`   | 의존 패키지 목록                          |
+| `app.py`             | Streamlit 기반 UI                         |
+| `main.py`            | FastAPI 백엔드 서버                       |
+| `chatbot.py`         | 질문 임베딩 + 검색 + 응답 생성 로직       |
+| `data/final_result.pkl` | 원본 FAQ 데이터                         |
+| `data/faq.csv`       | 전처리된 FAQ 텍스트 데이터                |
+| `make_csv.py`        | pickle → CSV 변환 스크립트                |
+| `vectorDB.py`        | FAQ 임베딩 → ChromaDB 저장 스크립트      |
 
 ## 5. 데모 예시 
 
